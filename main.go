@@ -55,6 +55,7 @@ func main() {
 	green := color.New(color.FgGreen).SprintFunc()
 	red := color.New(color.FgRed).SprintFunc()
 	yellow := color.New(color.FgYellow).SprintFunc()
+	blue := color.New(color.FgBlue).SprintFunc()
 
 	w := tabwriter.NewWriter(os.Stdout, 35, 0, 2, ' ', tabwriter.TabIndent)
 	fmt.Fprintf(w, "%s\t%s\t%s\t%s\t\n", "Ülke Sayısı", yellow("Toplam Hasta Sayısı"), red("Toplam Ölüm"), green("Toplam İyileşen"))
@@ -66,8 +67,8 @@ func main() {
 		w.Flush()
 	}
 
-	tw := tabwriter.NewWriter(os.Stdout, 35, 0, 20, ' ', tabwriter.TabIndent)
-	fmt.Fprintf(tw, "\n\n%s\t%s\t%s\n", yellow("Dünya Geneli Toplam Hasta Sayısı"), red("Dünya Geneli Toplam Ölüm"), green("Dünya Geneli Toplam İyileşen"))
-	fmt.Fprintf(tw, "%s\t%s\t%s\n", yellow(covid.TotalConfirmed), red(covid.TotalDeaths), green(covid.TotalRecovered))
+	tw := tabwriter.NewWriter(os.Stdout, 35, 0, 8, ' ', tabwriter.TabIndent)
+	fmt.Fprintf(tw, "\n\n%s\t%s\t%s\t%s\n", yellow("Dünya Geneli Toplam Hasta Sayısı"), red("Dünya Geneli Toplam Ölüm"), green("Dünya Geneli Toplam İyileşen"), blue("Toplam Ülke Sayısı"))
+	fmt.Fprintf(tw, "%s\t%s\t%s\t%s\n", yellow(covid.TotalConfirmed), red(covid.TotalDeaths), green(covid.TotalRecovered), blue(len(covid.Areas)))
 	tw.Flush()
 }
