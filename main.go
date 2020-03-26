@@ -3,11 +3,13 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/fatih/color"
 	"io/ioutil"
 	"net/http"
 	"os"
+	"sort"
 	"text/tabwriter"
+
+	"github.com/fatih/color"
 )
 
 type Area struct {
@@ -45,6 +47,10 @@ func main() {
 
 	var covid Data
 	json.Unmarshal(body, &covid)
+
+	sort.SliceStable(covid.Areas, func(i, j int) bool {
+		return covid.Areas[i].TotalConfirmed > covid.Areas[j].TotalConfirmed
+	})
 
 	green := color.New(color.FgGreen).SprintFunc()
 	red := color.New(color.FgRed).SprintFunc()
