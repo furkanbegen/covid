@@ -58,7 +58,7 @@ func main() {
 	blue := color.New(color.FgBlue).SprintFunc()
 
 	w := tabwriter.NewWriter(os.Stdout, 35, 0, 2, ' ', tabwriter.TabIndent)
-	fmt.Fprintf(w, "%s\t%s\t%s\t%s\t\n", "Ülke Sayısı", yellow("Toplam Hasta Sayısı"), red("Toplam Ölüm"), green("Toplam İyileşen"))
+	fmt.Fprintf(w, "%s\t%s\t%s\t%s\t\n", "Ülke Adı", yellow("Toplam Hasta Sayısı"), red("Toplam Ölüm"), green("Toplam İyileşen"))
 	w.Flush()
 
 	for _, area := range covid.Areas {
